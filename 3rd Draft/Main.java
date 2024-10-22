@@ -1,3 +1,4 @@
+
 import java.util.Scanner; // Import statement for Scanner
 
 public class Main {
@@ -6,8 +7,9 @@ public class Main {
         StoryLine objStoryLine = new StoryLine();
         ThirdStreet objThirdStreet = new ThirdStreet();
 
-        final String RED = "\u001B[31m";
+        final String RED = "\u001B[31m"; 
         final String RESET = "\u001B[0m";
+
         boolean enterGame = true;
 
         final int consoleWidth = 80;
@@ -28,11 +30,12 @@ public class Main {
                 ░                                   ░ ░                                 
                 """;
 
-        for (String line : asciiArt.split("\n")) {
-            System.out.println(RED + "\t\t\t" + centerText(line, consoleWidth));
-        }
-        System.out.println(RESET); // Reset color after the ASCII art
-
+                String[] lines = asciiArt.split("\n");
+                for (int i = 0; i < lines.length; i++) {
+                    String line = lines[i]; 
+                    System.out.println(RED + "\t\t\t" + centerText(line, consoleWidth));
+                }
+                System.out.println(RESET);
 
         while (enterGame) {
             System.out.print("\t\t\t\tDo you want to enter the game? (Yes/No): ");
