@@ -1,6 +1,6 @@
 public class Kamadan extends Hero {
     public Kamadan() {
-        super("Kamadan", 250, 200); // Call the constructor of Hero to set name, health, and mana
+        super("Kamadan", 250, 200);
     }
 
     @Override
