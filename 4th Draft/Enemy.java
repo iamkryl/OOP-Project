@@ -1,12 +1,12 @@
-public class Enemy {
+public abstract class Enemy {
     private final String name;
     private int health;
     private final String skill;
  
-    public Enemy(String var1, int var2, String var3) {
-       this.name = var1;
-       this.health = var2;
-       this.skill = var3;
+    public Enemy(String name, int health, String skill) {
+       this.name = name;
+       this.health = health;
+       this.skill = skill;
     }
  
     public String getName() {
@@ -17,8 +17,8 @@ public class Enemy {
        return this.health;
     }
  
-    public void setHealth(int var1) {
-       this.health = var1;
+    public void setHealth(int health) {
+       this.health = health;
     }
  
     public String getSkill() {
