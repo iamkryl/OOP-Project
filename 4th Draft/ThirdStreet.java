@@ -26,17 +26,18 @@ public class ThirdStreet extends Kingdom {
 
             for (int i = 0; i < enemies.length; i++) {
                 Enemy enemy = enemies[i];
-                int roundCounter = 1; // Initialize the round counter
+                int roundCounter = 1;
                 while (enemy.getHealth() > 0 && kamadan.getHealth() > 0) {
-                    System.out.println("\nRound: " + roundCounter); // Display the current round
+                    System.out.println("\nRound: " + roundCounter);
                     System.out.println("Kamadan's HP: " + kamadan.getHealth() + " | Mana: " + kamadan.getMana());
                     System.out.println(enemy.getName() + "'s HP: " + enemy.getHealth());
+                   
                     System.out.println("\nChoose your attack:");
                     System.out.println("1. Syntax Sleuth (30 damage, 20 mana)");
                     System.out.println("2. Logic Master (40 damage, 60 mana)");
                     System.out.println("3. Loop Ninja (30 damage, 20 mana)");
 
-                    System.out.print("Attack Chosen: ");
+                    System.out.print("Enter Attack: ");
                     int choice = scanner.nextInt();
 
                     int attackDamage = kamadan.attack(choice);
@@ -51,17 +52,15 @@ public class ThirdStreet extends Kingdom {
                     } else if (attackDamage == -2) {
                         System.out.println("Not enough mana! You cannot attack.");
                     } else {
-                        enemy.setHealth(enemy.getHealth() - attackDamage); // Deal damage to enemy
+                        enemy.setHealth(enemy.getHealth() - attackDamage); 
                         System.out.println("You deal " + attackDamage + " damage to " + enemy.getName() + "!");
                     }
 
-                    // Enemy attacks if still alive
                     if (enemy.getHealth() > 0) {
                         int enemyDamage = random.nextInt((i == 0 ? 21 : (i == 1 ? 41 : 36)));
                         simulateTyping(enemy.getName() + " uses " + enemy.getSkill() + "! It deals " + enemyDamage + " damage.");
                         kamadan.setHealth(kamadan.getHealth() - enemyDamage);
 
-                        // Check if Kamadan's health is 0 after enemy attack
                         if (kamadan.getHealth() <= 0) {
                             simulateTyping("Kamadan collapses to the ground, her vision fading. The laughter of her foes echoes as the screen fades to black...");
 
@@ -79,10 +78,9 @@ public class ThirdStreet extends Kingdom {
                         }
                     }
     
-                    roundCounter++; // Increment the round counter after each round
+                    roundCounter++; 
                 }
 
-                // After defeating an enemy
                 simulateTyping("\nKamadan's HP: " + kamadan.getHealth() + " | Mana: " + kamadan.getMana());
                 simulateTyping("\nWith one final strike, Kamadan defeats " + enemy.getName() + ". They stagger back, muttering in defeat...");
 
