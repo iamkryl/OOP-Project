@@ -16,17 +16,16 @@ public class SiITYou extends Kingdom {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         Kamadan kamadan = new Kamadan();
-        Altreia altreia = new Altreia(); 
-        StoryLine objStoryLine = new StoryLine();
+        Altreia altreia = new Altreia(); // Instantiate Altreia
         Ada objAda = new Ada();
-        Turing objTuring = new Turing();
         int choiceCharacter = 0;
+        int roundCounter = 1; // Initialize roundCounter here
 
         System.out.println("Choose your character: ");
         System.out.println("1. Kamadan");
         System.out.println("2. Altreia");
         System.out.print("Enter choice: ");
-        
+
         try {
             choiceCharacter = scanner.nextInt();
         } catch (Exception e) {
@@ -40,17 +39,17 @@ public class SiITYou extends Kingdom {
             System.out.println("You have chosen Altreia");
         } else {
             System.out.println("Invalid choice! Defaulting to Kamadan.");
-            choiceCharacter = 1; // Default to Kamadan
+            choiceCharacter = 1; 
         }
 
-        // Set the character to be used in the quest
         Hero currentHero = (choiceCharacter == 1) ? kamadan : altreia;
 
         while (objAda.getHealth() > 0 && currentHero.getHealth() > 0) {
+            System.out.print("\nRound: " + roundCounter); // Print round number
+
             System.out.println("\n" + currentHero.getName() + "'s HP: " + currentHero.getHealth() + " | Mana: " + currentHero.getMana());
             System.out.println(objAda.getName() + "'s HP: " + objAda.getHealth());
 
-            // Display attack options based on the chosen character
             System.out.println("\nChoose your attack:");
             if (choiceCharacter == 1) {
                 System.out.println("1. Syntax Sleuth (30 damage, 20 mana)");
@@ -67,13 +66,13 @@ public class SiITYou extends Kingdom {
 
             int attackDamage = currentHero.attack(choiceAttack);
             if (attackDamage == -1) {
-                objStoryLine.simulateTyping("Invalid choice! No damage dealt, and " + objAda.getName() + " takes the chance to attack.");
+                simulateTyping("Invalid choice! No damage dealt, and " + objAda.getName() + " takes the chance to attack.");
                 if (objAda.getHealth() > 0) {
                     int adaSkill = random.nextInt(2);
                     int enemyDamage = (adaSkill == 0) ? 20 : 40;
                     String skillUsed = (adaSkill == 0) ? objAda.getSkill1() : objAda.getSkill2();
 
-                    objStoryLine.simulateTyping(objAda.getName() + " uses " + skillUsed + "! It deals " + enemyDamage + " damage.");
+                    simulateTyping(objAda.getName() + " uses " + skillUsed + "! It deals " + enemyDamage + " damage.");
                     currentHero.setHealth(currentHero.getHealth() - enemyDamage);
                 }
                 continue;
@@ -84,23 +83,25 @@ public class SiITYou extends Kingdom {
                 System.out.println("You deal " + attackDamage + " damage to " + objAda.getName() + "!");
             }
 
+            roundCounter++; 
+
             if (objAda.getHealth() > 0) {
                 int adaSkill = random.nextInt(2);
                 int enemyDamage = (adaSkill == 0) ? 20 : 40;
                 String skillUsed = (adaSkill == 0) ? objAda.getSkill1() : objAda.getSkill2();
 
-                objStoryLine.simulateTyping(objAda.getName() + " uses " + skillUsed + "! It deals " + enemyDamage + " damage.");
+                simulateTyping(objAda.getName() + " uses " + skillUsed + "! It deals " + enemyDamage + " damage.");
                 currentHero.setHealth(currentHero.getHealth() - enemyDamage);
             }
 
             if (currentHero.getHealth() <= 0) {
-                objStoryLine.simulateTyping(currentHero.getName() + " collapses to the ground, her vision fading. The laughter of her foes echoes as the screen fades to black...");
+                simulateTyping(currentHero.getName() + " collapses to the ground, her vision fading. The laughter of her foes echoes as the screen fades to black...");
                 System.exit(0);
             }
         }
 
-        objStoryLine.simulateTyping("\n" + currentHero.getName() + "'s HP: " + currentHero.getHealth() + " | Mana: " + currentHero.getMana());
-        objStoryLine.simulateTyping("\nWith one final strike, " + currentHero.getName() + " defeats " + objAda.getName() + ". They stagger back, muttering in defeat...");
+        simulateTyping("\n" + currentHero.getName() + "'s HP: " + currentHero.getHealth() + " | Mana: " + currentHero.getMana());
+        simulateTyping("\nWith one final strike, " + currentHero.getName() + " defeats " + objAda.getName() + ". They stagger back, muttering in defeat...");
 
         System.out.println("You have leveled up! Choose an upgrade:");
         System.out.println("1. Increase MAXIMUM HEALTH (+50)");
@@ -111,14 +112,26 @@ public class SiITYou extends Kingdom {
         switch (upgradeChoice) {
             case 1:
                 currentHero.setHealth(Math.min(currentHero.getHealth() + 50, 250));
-                objStoryLine.simulateTyping(currentHero.getName() + " increases her HEALTH! UPDATED HEALTH: " + currentHero.getHealth());
+                simulateTyping(currentHero.getName() + " increases her HEALTH! UPDATED HEALTH: " + currentHero.getHealth());
                 break;
             case 2:
                 currentHero.setMana(Math.min(currentHero.getMana() + 50, 200));
-                objStoryLine.simulateTyping(currentHero.getName() + " increases her MANA! UPDATED MANA: " + currentHero.getMana());
+                simulateTyping(currentHero.getName() + " increases her MANA! UPDATED MANA: " + currentHero.getMana());
                 break;
             default:
-                objStoryLine.simulateTyping("Invalid choice! No upgrades applied.");
+                simulateTyping("Invalid choice! No upgrades applied.");
         }
+    }
+
+    private void simulateTyping(String message) {
+        for (char c : message.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(10); 
+            } catch (InterruptedException e) {
+                System.err.println("An error occurred during the delay.");
+            }
+        }
+        System.out.println();
     }
 }
