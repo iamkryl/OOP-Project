@@ -121,6 +121,7 @@ public class SiITYou extends Kingdom {
             default:
                 simulateTyping("Invalid choice! No upgrades applied.");
         }
+        scanner.close();
     }
 
     private void simulateTyping(String message) {
