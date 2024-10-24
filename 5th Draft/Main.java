@@ -73,7 +73,7 @@ public class Main {
                 System.out.println("\t\t\t\t\tInvalid Input. Enter either YES/NO only\n");
             }
         }
-  
+        scan.close();
     }
 
     private static String centerText(String text, int width) {
