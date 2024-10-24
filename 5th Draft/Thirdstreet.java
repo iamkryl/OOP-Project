@@ -147,6 +147,7 @@ public class ThirdStreet extends Kingdom {
                 System.out.println("============================================================================================================================");     
                 scanner.next(); 
             }
+            scanner.close();
         }
 
         objStoryLine.secondNarration(); 
