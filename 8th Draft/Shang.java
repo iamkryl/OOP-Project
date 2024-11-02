@@ -23,14 +23,14 @@ public class Shang extends Hero {
                 manaCost = 70;
                 break;
             default:
-                return -1; // Invalid choice
+                return -1; 
         }
 
         if (getMana() >= manaCost) {
-            setMana(getMana() - manaCost); // Deduct mana
-            return damage; // Return the damage dealt
+            setMana(getMana() - manaCost); 
+            return damage; 
         } else {
-            return -2; // Not enough mana
+            return -2; 
         }
     }
 }
