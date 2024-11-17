@@ -24,7 +24,8 @@ public class Kamadan extends Hero {
             case 4:
                 damage = 15;
                 manaCost = 0;
-                return 15;
+                setMana(getMana() + 20);
+                break;
             default:
                 return -1; 
         }
@@ -32,7 +33,8 @@ public class Kamadan extends Hero {
         if (getMana() >= manaCost) {
             setMana(getMana() - manaCost); 
             return damage; 
-        } else {
+        }
+        else {
             return -2;
         }
     }
