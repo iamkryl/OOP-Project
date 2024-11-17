@@ -43,7 +43,7 @@ public class SiITYou extends Kingdom {
 
         Enemy[] enemies = {
             new Ada(),
-            new Turing(),
+            new Turing()
         };
 
         for (int i = 0; i < enemies.length; i++) {
@@ -226,10 +226,20 @@ public class SiITYou extends Kingdom {
                                 simulateTyping("Invalid choice! No damage dealt, and " + enemy.getName() + " takes the chance to attack.");
                             } else if (attackDamage == -2) {
                                 System.out.println("Not enough mana! You cannot attack.");
-                            } else {
+                            }else {
                                 enemy.setHealth(enemy.getHealth() - attackDamage); 
                                 System.out.println("You deal " + attackDamage + " damage to " + enemy.getName() + "!");
+                                    if(choiceCharacter == 1){
+                                        if(kamadan.getMana() > 200){
+                                            kamadan.setMana(200);
+                                        }
+                                    } else{
+                                        if(objAltreia.getMana() > 250){
+                                            objAltreia.setMana(250);
+                                        }
+                                    }
                             }
+
             
                             if (enemy.getHealth() > 0) {
                                 adaSkill = random.nextInt(2);
@@ -329,6 +339,12 @@ public class SiITYou extends Kingdom {
                     } else{
                         doneInput = false;
                         while (!doneInput) {
+                            System.out.println("\n-----------------------------------------------------------------------------------------");
+                            System.out.print("|      Kamadan's HP: " + kamadan.getHealth() + " | Mana: " + kamadan.getMana() + "     | Syntax Sleuth | Logic Master | Loop Ninja    |");
+                            System.out.println("\n-----------------------------------------------------------------------------------------");
+                            System.out.print("|      Altreia's HP: " + objAltreia.getHealth() + " | Mana: " + objAltreia.getMana() + "     | Code Catalyst | Focus Shield | Syntax Strike |");
+                            System.out.println("\n-----------------------------------------------------------------------------------------");
+            
                             System.out.println("Choose your character for the next round:");
                             System.out.println("1. Kamadan");
                             System.out.println("2. Altreia");
@@ -342,8 +358,7 @@ public class SiITYou extends Kingdom {
                                     System.out.println("Invalid input. Please enter 1 or 2.\n");
                                 }
                             } catch (Exception e) {
-                                System.out.println("Invalid input. Please enter 1 or 2.");
-                                System.out.print("Enter choice: ");
+                                System.out.println("Invalid input. Please enter 1 or 2.");  
                                 scanner.next();
                             }
                         }
