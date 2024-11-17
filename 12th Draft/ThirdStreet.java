@@ -59,7 +59,7 @@ public class ThirdStreet extends Kingdom {
             System.out.println("3. Loop Ninja (30 damage, 20 mana)");
             System.out.println("4. Mana Regeneration (15 damage, +20 mana)");
 
-            int choice = -1;
+            int choice = 0;
             while (choice < 1 || choice > 4) {
                 System.out.print("\nEnter Attack: ");
                 try {
