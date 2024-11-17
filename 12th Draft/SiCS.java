@@ -146,30 +146,23 @@ public class SiCS extends Kingdom{
                     simulateTyping("Invalid choice! No damage dealt, and " + objKhaiamanan.getName() + " takes the chance to attack.");
                 } else if (attackDamage == -2) {
                     System.out.println("Not enough mana! You cannot attack.");
-                } else if (attackDamage == -3){
-                    objKhaiamanan.setHealth(objKhaiamanan.getHealth() - attackDamage);
-                    System.out.println("You deal " + attackDamage + " damage to " + objKhaiamanan.getName() + "!");
-                    
-                    if(choiceCharacter == 1){
-                        objKamadan.setMana(objKamadan.getMana() + 20);
-                            if(objKamadan.getMana() > 200){
-                                objKamadan.setMana(200);
-                        }
-                    } else if (choiceCharacter == 2){
-                        objAltreia.setMana(objAltreia.getMana() + 20);
-                            if(objAltreia.getMana() > 250){
-                                objAltreia.setMana(250);
-                        }
-                    } else{
-                        objShang.setMana(objShang.getMana() + 20);
-                            if(objShang.getMana() > 250){
-                                objShang.setMana(250);
-                        }
-                    }
-                    
                 } else {
                     objKhaiamanan.setHealth(objKhaiamanan.getHealth() - attackDamage); 
                     System.out.println("You deal " + attackDamage + " damage to " + objKhaiamanan.getName() + "!");
+
+                        if(choiceCharacter == 1){
+                            if(objKamadan.getMana() > 200){
+                                objKamadan.setMana(200);
+                            }
+                        } else if(choiceCharacter == 2){
+                            if(objAltreia.getMana() > 250){
+                                objAltreia.setMana(250);
+                            }
+                        } else {
+                            if(objShang.getMana() > 250){
+                                objShang.setMana(250);
+                            }
+                        }
                 }
 
                 if (objKhaiamanan.getHealth() > 0) {
@@ -305,3 +298,4 @@ public class SiCS extends Kingdom{
         }
 
     }
+}
