@@ -25,7 +25,8 @@ public class Shang extends Hero {
             case 4:
                 damage = 15;
                 manaCost = 0;
-                return 15;
+                setMana(getMana() + 20);
+                break;
             default:
                 return -1; 
         }
