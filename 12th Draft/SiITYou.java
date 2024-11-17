@@ -39,7 +39,6 @@ public class SiITYou extends Kingdom {
         Altreia objAltreia = new Altreia();
         StoryLine objStoryLine = new StoryLine();
         int choiceCharacter = 0;
-        boolean upgradeDone = false;
 
         Enemy[] enemies = {
             new Ada(),
@@ -50,6 +49,7 @@ public class SiITYou extends Kingdom {
             Enemy enemy = enemies[i];
 
             boolean doneInput = false;
+            boolean upgradeDone = false;
             int roundCounter = 1;
             
             
@@ -146,12 +146,10 @@ public class SiITYou extends Kingdom {
                     System.out.println("You deal " + attackDamage + " damage to " + enemy.getName() + "!");
                     
                     if(choiceCharacter == 1){
-                        kamadan.setMana(kamadan.getMana() + 20);
                             if(kamadan.getMana() > 200){
                                 kamadan.setMana(200);
                         }
                     } else{
-                        objAltreia.setMana(objAltreia.getMana() + 20);
                             if(objAltreia.getMana() > 250){
                                 objAltreia.setMana(250);
                         }
