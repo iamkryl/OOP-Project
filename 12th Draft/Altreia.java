@@ -25,7 +25,8 @@ public class Altreia extends Hero {
             case 4:
                 damage = 15;
                 manaCost = 0;
-                return 15;
+                setMana(getMana() + 20);
+                break;
             default:
                 return -1; // Invalid choice
         }
