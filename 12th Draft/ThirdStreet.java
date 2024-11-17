@@ -66,6 +66,12 @@ public class ThirdStreet extends Kingdom {
                     choice = scanner.nextInt();
                     if (choice < 1 || choice > 4) {
                         System.out.println("Invalid choice! Please enter a number between 1 and 4.");
+                        
+                        System.out.println("\nChoose your attack:");
+                        System.out.println("1. Syntax Sleuth (30 damage, 20 mana)");
+                        System.out.println("2. Logic Master (40 damage, 60 mana)");
+                        System.out.println("3. Loop Ninja (30 damage, 20 mana)");
+                        System.out.println("4. Mana Regeneration (15 damage, +20 mana)");
                     }
                 } catch (Exception e) {
                     System.out.println("Invalid input! Please enter a valid number.");
@@ -76,20 +82,15 @@ public class ThirdStreet extends Kingdom {
             // Only apply attack damage if valid choice is made
             int attackDamage = kamadan.attack(choice);
             if (attackDamage == -1) {
-                simulateTyping("Invalid choice! No damage dealt, and " + enemy.getName() + " takes the chance to attack.");
+                simulateTyping("Invalid choice!");
             } else if (attackDamage == -2) {
                 System.out.println("Not enough mana! You cannot attack.");
-            } else if (attackDamage == -3){
-                enemy.setHealth(enemy.getHealth() - attackDamage);
-                System.out.println("You deal " + attackDamage + " damage to " + enemy.getName() + "!");
-
-                kamadan.setMana(kamadan.getMana() + 20);
-                if(kamadan.getMana() > 200){
-                    kamadan.setMana(200);
-                }
             } else {
                 enemy.setHealth(enemy.getHealth() - attackDamage);
                 System.out.println("You deal " + attackDamage + " damage to " + enemy.getName() + "!");
+                if(kamadan.getMana() > 200){
+                    kamadan.setMana(200);
+                }
             }
 
             // Enemy's turn to attack after the player's turn
