@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        StoryLine objStoryLine = new StoryLine();
+        Kamadan kamadan = new Kamadan();
+        Altreia altreia = new Altreia();
+        ThirdStreet objThirdStreet = new ThirdStreet(kamadan, altreia);
+        SiITYou objSiITYou = new SiITYou(kamadan, altreia);
+        SiCS objSiCS = new SiCS(kamadan, altreia);
+        
+        objStoryLine.gameLogo();
+
+        boolean enterGame = true;
+
+        while (enterGame) {
+            System.out.print("\t\t\t\t\tDo you want to enter the game? (Yes/No): ");
+            String option = scan.nextLine();
+
+            if (option.equalsIgnoreCase("Yes")) {
+                while (enterGame) {
+                System.out.print("\t\t\t\t\tDo you want to skip the storyline? (Yes/No): ");
+                String optionStoryLine = scan.nextLine();
+                    try {
+                        if (optionStoryLine.equalsIgnoreCase("Yes")) {
+                            objStoryLine.questOne();
+                            objThirdStreet.enter();
+                            objThirdStreet.startQuest();
+                            objSiITYou.enter();
+                            objSiITYou.startQuest();
+                            objSiCS.enter();
+                            objSiCS.startQuest();
+                            enterGame = false;
+                        }else if (optionStoryLine.equalsIgnoreCase("No")) {
+                            objStoryLine.prologue();
+                            objStoryLine.questOne();
+                            objThirdStreet.enter();
+                            objThirdStreet.startQuest();
+                            objSiITYou.enter();
+                            objSiITYou.startQuest();
+                            objSiCS.enter();
+                            objSiCS.startQuest();
+                            enterGame = false;
+                        }else {
+                            System.out.println("\t\t\t\t\tInvalid Input. Enter either YES/NO only\n");
+                        }
+                    } catch (Exception e) {
+                        scan.nextLine();
+                    }
+                }
+            } else if (option.equalsIgnoreCase("No")) {
+                System.out.print("\t\t\t\t\t   I WILL ALWAYS FIND MY WAY BACK TO YOU");
+                break;
+            } else {
+                System.out.println("\t\t\t\t\tInvalid Input. Enter either YES/NO only\n");
+            }
+        }
+  
+    }
+}
